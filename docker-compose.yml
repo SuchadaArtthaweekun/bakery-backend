@@ -1,0 +1,38 @@
+version: "3"
+services:
+
+  postgres_db:
+    build: ./Database
+    container_name: postgres_db
+    environment:
+      POSTGRES_DB: my_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+
+  # go-mini:
+  #   build: ./backend
+  #   volumes:
+  #     - ./backend:/app
+  #   ports:
+  #     - 8081:8081
+  #   depends_on:
+  #     - postgres_db
+  #   links:
+  #     - postgres_db
+  #   command: air
+
+  # react-mini:
+  #   container_name: react-mini
+  #   build: ./frontend
+  #   environment:
+  #     CHOKIDAR_USEPOLLING: "true"
+  #   volumes:
+  #     - ./frontend/src:/app/src
+  #     - ./frontend/public/assets:/app/public/assets
+  #     - /app/node_modules
+  #   ports:
+  #     - 3000:3000
+  #   stdin_open: true
+  #   command: npm start
